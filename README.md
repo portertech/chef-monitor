@@ -19,7 +19,8 @@ The [Sensu cookbook](http://community.opscode.com/cookbooks/sensu).
 Attributes
 ==========
 
-There are currently no attributes.
+`node["monitor"]["sensu_plugin_version"]` - Sensu Plugin library
+version.
 
 Usage
 =====

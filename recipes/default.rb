@@ -16,3 +16,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+include_recipe "sensu::client"
+
+sensu_gem "sensu-plugin" do
+  version node["monitor"]["sensu_plugin_version"]
+end
