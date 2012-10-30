@@ -22,3 +22,8 @@ include_recipe "sensu::client"
 sensu_gem "sensu-plugin" do
   version node["monitor"]["sensu_plugin_version"]
 end
+
+cookbook_file "/etc/sensu/plugin/check-procs.rb" do
+  mode 0755
+end
+

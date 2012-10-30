@@ -25,6 +25,13 @@ cookbook_file "/etc/sensu/plugin/redis-metrics.rb" do
   mode 0755
 end
 
+sensu_check "redis_process" do
+  command "check-procs.rb -p redis-server -C 1"
+  handlers ["notifications"]
+  standalone true
+  interval 30
+end
+
 sensu_check "redis_metrics" do
   command "redis-metrics.rb"
   handlers ["metrics"]
