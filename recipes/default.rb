@@ -19,13 +19,13 @@
 
 include_recipe "sensu::default"
 
-sensu_client node["name"] do
+sensu_client node.name do
   if node.has_key?("cloud")
     address node["cloud"]["public_ipv4"] || node["ipaddress"]
   else
     address node["ipaddress"]
   end
-  subscriptions node["roles"]
+  subscriptions node["roles"] + ["all"]
 end
 
 sensu_gem "sensu-plugin" do
