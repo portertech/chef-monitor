@@ -19,23 +19,24 @@
 
 include_recipe "sensu::rabbitmq"
 include_recipe "sensu::redis"
-include_recipe "sensu::server"
-include_recipe "sensu::api"
-include_recipe "sensu::dashboard"
 
-include_recipe "monitor::default"
+include_recipe "sensu::default"
 
 sensu_handler "debug" do
   type "pipe"
   command "cat"
 end
 
-sensu_handler "notifications" do
+sensu_handler "default" do
   type "set"
-  handlers node["monitor"]["notification_handlers"]
+  handlers node["monitor"]["default_handlers"]
 end
 
 sensu_handler "metrics" do
   type "set"
   handlers node["monitor"]["metric_handlers"]
 end
+
+include_recipe "sensu::server"
+include_recipe "sensu::api"
+include_recipe "sensu::dashboard"

@@ -22,11 +22,9 @@ Attributes
 `node["monitor"]["sensu_plugin_version"]` - Sensu Plugin library
 version.
 
-`node["monitor"]["notification_handlers"]` - Notification event
-handlers.
+`node["monitor"]["default_handlers"]` - Default event handlers.
 
 `node["monitor"]["metric_handlers"]` - Metric event handlers.
-
 
 Usage
 =====

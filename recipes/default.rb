@@ -17,7 +17,16 @@
 # limitations under the License.
 #
 
-include_recipe "sensu::client"
+include_recipe "sensu::default"
+
+sensu_client node["name"] do
+  if node.has_key?("cloud")
+    address node["cloud"]["public_ipv4"] || node["ipaddress"]
+  else
+    address node["ipaddress"]
+  end
+  subscriptions node["roles"]
+end
 
 sensu_gem "sensu-plugin" do
   version node["monitor"]["sensu_plugin_version"]
@@ -27,3 +36,4 @@ cookbook_file "/etc/sensu/plugin/check-procs.rb" do
   mode 0755
 end
 
+include_recipe "sensu::client"
