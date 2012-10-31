@@ -1,0 +1,6 @@
+cookbook "rabbitmq",
+  :git => "https://github.com/opscode-cookbooks/rabbitmq"
+cookbook "redis",
+  :git => "https://github.com/miah/chef-redis"
+cookbook "sensu",
+  :git => "https://github.com/sensu/sensu-chef"
