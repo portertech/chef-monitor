@@ -6,6 +6,7 @@ platform :ubuntu do
 end
 
 cookbook "monitor" do
-  configuration "all_in_one"
+  configuration "server"
+  configuration "redis"
   runtimes []
 end
