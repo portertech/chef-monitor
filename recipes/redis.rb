@@ -28,7 +28,7 @@ end
 
 sensu_check "redis_process" do
   command "check-procs.rb -p redis-server -C 1"
-  handlers ["notifications"]
+  handlers ["default"]
   standalone true
   interval 30
 end
