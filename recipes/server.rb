@@ -37,6 +37,6 @@ sensu_handler "metrics" do
   handlers node["monitor"]["metric_handlers"]
 end
 
-include_recipe "sensu::server"
-include_recipe "sensu::api"
-include_recipe "sensu::dashboard"
+include_recipe "sensu::server_service"
+include_recipe "sensu::api_service"
+include_recipe "sensu::dashboard_service"

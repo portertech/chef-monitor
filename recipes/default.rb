@@ -17,6 +17,22 @@
 # limitations under the License.
 #
 
+node.set.sensu.use_embedded_ruby = true
+
+unless Chef::Config[:solo]
+  monitor_server = search(:node, "recipes:monitor\:\:server").first
+
+  unless monitor_server.nil?
+    address = if monitor_server.has_key?("cloud")
+      monitor_server["cloud"]["public_ipv4"] || monitor_server["ipaddress"]
+    else
+      monitor_server["ipaddress"]
+    end
+    node.set.sensu.rabbitmq.host = address
+    node.set.sensu.redis.host = address
+  end
+end
+
 include_recipe "sensu::default"
 
 sensu_client node.name do
@@ -37,4 +53,4 @@ cookbook_file "/etc/sensu/plugins/check-procs.rb" do
   mode 0755
 end
 
-include_recipe "sensu::client"
+include_recipe "sensu::client_service"
