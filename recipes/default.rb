@@ -33,6 +33,7 @@ sensu_gem "sensu-plugin" do
 end
 
 cookbook_file "/etc/sensu/plugins/check-procs.rb" do
+  source "plugins/check-procs.rb"
   mode 0755
 end
 
