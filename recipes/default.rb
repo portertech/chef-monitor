@@ -20,7 +20,7 @@
 node.set.sensu.use_embedded_ruby = true
 
 unless Chef::Config[:solo]
-  monitor_server = search(:node, "recipes:monitor\:\:server").first
+  monitor_server = search(:node, 'recipes:monitor\:\:server').first
 
   unless monitor_server.nil?
     address = if monitor_server.has_key?("cloud")
