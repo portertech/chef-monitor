@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: monitor
-# Recipe:: server
+# Recipe:: master
 #
 # Copyright 2012, Sean Porter Consulting
 #

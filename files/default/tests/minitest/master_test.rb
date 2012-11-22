@@ -1,6 +1,6 @@
 require File.expand_path('../support/helpers', __FILE__)
 
-describe "monitor::server" do
+describe "monitor::master" do
   include Helpers::Monitor
 
   it "runs the sensu server" do

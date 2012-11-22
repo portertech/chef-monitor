@@ -20,13 +20,13 @@
 node.set.sensu.use_embedded_ruby = true
 
 unless Chef::Config[:solo]
-  monitor_server = search(:node, 'recipes:monitor\:\:server').first
+  monitor_master = search(:node, 'recipes:monitor\:\:master').first
 
-  unless monitor_server.nil?
-    address = if monitor_server.has_key?("cloud")
-      monitor_server["cloud"]["public_ipv4"] || monitor_server["ipaddress"]
+  unless monitor_master.nil?
+    address = if monitor_master.has_key?("cloud")
+      monitor_master["cloud"]["public_ipv4"] || monitor_master["ipaddress"]
     else
-      monitor_server["ipaddress"]
+      monitor_master["ipaddress"]
     end
     node.set.sensu.rabbitmq.host = address
     node.set.sensu.redis.host = address
