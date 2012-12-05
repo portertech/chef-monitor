@@ -18,13 +18,14 @@
 #
 
 node.set.sensu.use_embedded_ruby = true
+ip_type = node["monitor"]["use_local_ipv4"] ? "local_ipv4" : "public_ipv4"
 
 unless Chef::Config[:solo]
   monitor_master = search(:node, 'recipes:monitor\:\:master').first
 
   unless monitor_master.nil?
     address = if monitor_master.has_key?("cloud")
-      monitor_master["cloud"]["public_ipv4"] || monitor_master["ipaddress"]
+      monitor_master["cloud"][ip_type] || monitor_master["ipaddress"]
     else
       monitor_master["ipaddress"]
     end
@@ -37,7 +38,7 @@ include_recipe "sensu::default"
 
 sensu_client node.name do
   if node.has_key?("cloud")
-    address node["cloud"]["public_ipv4"] || node["ipaddress"]
+    address node["cloud"][ip_type] || node["ipaddress"]
   else
     address node["ipaddress"]
   end
