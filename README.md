@@ -28,6 +28,8 @@ version.
 
 `node["monitor"]["use_private_ipv4"]` - Defaults to false.  If true, use local_ipv4 when available instead of public_ipv4.
 
+`node["monitor"]["additional_client_attributes"]` - Additional client attributes to be passed to the sensu_client LWRP.
+
 Usage
 =====
 
