@@ -26,7 +26,7 @@ version.
 
 `node["monitor"]["metric_handlers"]` - Metric event handlers.
 
-`node["monitor"]["use_private_ipv4"] - Defaults to false.  If true, use local_ipv4 when available instead of public_ipv4.
+`node["monitor"]["use_private_ipv4"]` - Defaults to false.  If true, use local_ipv4 when available instead of public_ipv4.
 
 Usage
 =====
