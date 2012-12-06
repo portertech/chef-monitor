@@ -43,6 +43,7 @@ sensu_client node.name do
     address node["ipaddress"]
   end
   subscriptions node["roles"] + ["all"]
+  additional node["monitor"]["additional_client_attributes"]
 end
 
 sensu_gem "sensu-plugin" do
