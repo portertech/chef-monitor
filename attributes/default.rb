@@ -6,3 +6,5 @@ default["monitor"]["metric_handlers"] = ["debug"]
 default["monitor"]["use_local_ipv4"] = false
 
 default["monitor"]["additional_client_attributes"] = {}
+
+default["monitor"]["environment_aware_search"] = false

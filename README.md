@@ -30,6 +30,8 @@ version.
 
 `node["monitor"]["additional_client_attributes"]` - Additional client attributes to be passed to the sensu_client LWRP.
 
+`node["monitor"]["environment_aware_search"]` - Defaults to false.  If true, will only search for master server within the running node's chef_environment
+
 Usage
 =====
 
