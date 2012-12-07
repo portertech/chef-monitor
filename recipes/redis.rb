@@ -34,6 +34,7 @@ sensu_check "redis_process" do
 end
 
 sensu_check "redis_metrics" do
+  type "metric"
   command "redis-metrics.rb"
   handlers ["metrics"]
   standalone true
