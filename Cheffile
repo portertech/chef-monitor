@@ -1,0 +1,11 @@
+site 'http://community.opscode.com/api/v1'
+
+cookbook "rabbitmq"
+
+cookbook "redis",
+  :git => "https://github.com/miah/chef-redis"
+
+cookbook "sensu"
+
+cookbook "monitor",
+  :git => "https://github.com/portertech/chef-monitor"
