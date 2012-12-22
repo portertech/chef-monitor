@@ -1,7 +1,6 @@
 site 'http://community.opscode.com/api/v1'
 
-cookbook "rabbitmq",
-  :git => "https://github.com/opscode-cookbooks/rabbitmq"
+cookbook "rabbitmq", "1.6.4"
 
 cookbook "redis",
   :git => "https://github.com/miah/chef-redis"
