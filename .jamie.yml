@@ -4,8 +4,9 @@ platforms:
   - name: ubuntu
     driver_config:
       base_container: "ubuntu-1204"
-      username: "ubuntu"
-      password: "ubuntu"
+  - name: centos
+    driver_config:
+      base_container: "centos-6"
 
 suites:
   - name: default
