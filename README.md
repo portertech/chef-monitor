@@ -19,18 +19,21 @@ The [Sensu cookbook](http://community.opscode.com/cookbooks/sensu).
 Attributes
 ==========
 
+`node["monitor"]["environment_aware_search"]` - Defaults to false.
+If true, will limit search to the node's chef_environment.
+
+`node["monitor"]["use_private_ipv4"]` - Defaults to false. If true,
+use local\_ipv4 when available instead of public\_ipv4.
+
+`node["monitor"]["additional_client_attributes"]` - Additional client
+attributes to be passed to the sensu_client LWRP.
+
 `node["monitor"]["sensu_plugin_version"]` - Sensu Plugin library
 version.
 
 `node["monitor"]["default_handlers"]` - Default event handlers.
 
 `node["monitor"]["metric_handlers"]` - Metric event handlers.
-
-`node["monitor"]["use_private_ipv4"]` - Defaults to false.  If true, use local_ipv4 when available instead of public_ipv4.
-
-`node["monitor"]["additional_client_attributes"]` - Additional client attributes to be passed to the sensu_client LWRP.
-
-`node["monitor"]["environment_aware_search"]` - Defaults to false.  If true, will only search for master server within the running node's chef_environment
 
 Usage
 =====
