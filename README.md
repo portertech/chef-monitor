@@ -23,7 +23,7 @@ Attributes
 If true, will limit search to the node's chef_environment.
 
 `node["monitor"]["use_private_ipv4"]` - Defaults to false. If true,
-use local\_ipv4 when available instead of public\_ipv4.
+use cloud local\_ipv4 when available instead of public\_ipv4.
 
 `node["monitor"]["additional_client_attributes"]` - Additional client
 attributes to be passed to the sensu_client LWRP.
