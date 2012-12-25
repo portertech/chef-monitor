@@ -4,10 +4,10 @@ Description
 Monitor is a cookbook for monitoring services, using Sensu, a
 monitoring framework. The default recipe installs & configures the
 Sensu client (monitoring agent), as well as common service check
-dependencies. The master recipe installs & configures the Sensu server
-(event handler) & its dependencies. The remaining recipes are intended
-to put monitoring checks in place in order to monitor specific
-services.
+dependencies. The master recipe installs & configures the Sensu server,
+API, dashboard, & their dependencies (eg. RabbitMQ & Redis). The
+remaining recipes are intended to put monitoring checks in place in
+order to monitor specific services (eg. `recipe[monitor::redis]`).
 
 Learn more about Sensu [Here](https://github.com/sensu/sensu/wiki).
 
