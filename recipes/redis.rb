@@ -17,14 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe "monitor::default"
-
-sensu_gem "redis"
-
-cookbook_file "/etc/sensu/plugins/redis-metrics.rb" do
-  source "plugins/redis-metrics.rb"
-  mode 0755
-end
+include_recipe "monitor::_redis"
 
 sensu_check "redis_process" do
   command "check-procs.rb -p redis-server -C 1"

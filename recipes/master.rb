@@ -22,11 +22,6 @@ include_recipe "sensu::redis"
 
 include_recipe "sensu::default"
 
-sensu_handler "debug" do
-  type "pipe"
-  command "cat"
-end
-
 sensu_handler "default" do
   type "set"
   handlers node["monitor"]["default_handlers"]
@@ -35,6 +30,19 @@ end
 sensu_handler "metrics" do
   type "set"
   handlers node["monitor"]["metric_handlers"]
+end
+
+unless Chef::Config[:solo]
+  search(:sensu_checks, '*:*') do |check|
+    sensu_check check["id"] do
+      type check["type"]
+      command check["command"]
+      subscribers check["subscribers"]
+      interval check["interval"]
+      handlers check["handlers"]
+      additional check["additional"]
+    end
+  end
 end
 
 include_recipe "sensu::server_service"

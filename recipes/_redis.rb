@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: monitor
-# Recipe:: rabbitmq
+# Recipe:: _redis
 #
 # Copyright 2012, Sean Porter Consulting
 #
@@ -17,11 +17,11 @@
 # limitations under the License.
 #
 
-include_recipe "monitor::_rabbitmq"
+include_recipe "monitor::default"
 
-sensu_check "rabbitmq_overview_metrics" do
-  command "rabbitmq-overview-metrics.rb"
-  handlers ["metrics"]
-  standalone true
-  interval 30
+sensu_gem "redis"
+
+cookbook_file "/etc/sensu/plugins/redis-metrics.rb" do
+  source "plugins/redis-metrics.rb"
+  mode 0755
 end

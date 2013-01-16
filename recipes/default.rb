@@ -24,7 +24,7 @@ unless Chef::Config[:solo]
   monitor_master = if node["monitor"]["environment_aware_search"]
     search(:node, "chef_environment:#{node.chef_environment} AND recipes:monitor\\:\\:master").first
   else
-    search(:node, 'recipes:monitor\:\:master').first
+    search(:node, "recipes:monitor\\:\\:master").first
   end
 
   unless monitor_master.nil?
