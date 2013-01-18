@@ -32,7 +32,9 @@ sensu_handler "metrics" do
   handlers node["monitor"]["metric_handlers"]
 end
 
-data_bag("sensu_checks").each do |check|
+data_bag("sensu_checks").each do |item|
+  check = data_bag_item(item)
+
   sensu_check check["id"] do
     type check["type"]
     command check["command"]
