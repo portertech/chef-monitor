@@ -1,12 +1,16 @@
 site 'http://community.opscode.com/api/v1'
 
-cookbook "rabbitmq", "1.6.4"
+cookbook "apt", "1.7.0"
+
+cookbook "rabbitmq",
+  :git => "https://github.com/portertech/rabbitmq.git",
+  :ref => "path"
 
 cookbook "redis",
-  :github => "miah/chef-redis"
+  :git => "https://github.com/miah/chef-redis.git"
 
 cookbook "sensu",
-  :github => "sensu/sensu-chef"
+  :git => "https://github.com/sensu/sensu-chef.git"
 
 cookbook "monitor",
   :path => "./"
