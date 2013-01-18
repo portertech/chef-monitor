@@ -3,10 +3,10 @@ site 'http://community.opscode.com/api/v1'
 cookbook "rabbitmq", "1.6.4"
 
 cookbook "redis",
-  :git => "https://github.com/miah/chef-redis"
+  :github => "miah/chef-redis"
 
 cookbook "sensu",
-  :git => "https://github.com/sensu/sensu-chef"
+  :github => "sensu/sensu-chef"
 
 cookbook "monitor",
-  :git => "https://github.com/portertech/chef-monitor"
+  :path => "./"

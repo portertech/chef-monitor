@@ -37,5 +37,5 @@
 }
 
 @test "should have a ssh check definition" {
-  [ -x "/etc/sensu/conf.d/checks/ssh.json" ]
+  [ -e "/etc/sensu/conf.d/checks/ssh.json" ]
 }
