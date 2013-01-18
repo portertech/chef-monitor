@@ -33,7 +33,7 @@ sensu_handler "metrics" do
 end
 
 data_bag("sensu_checks").each do |item|
-  check = data_bag_item(item)
+  check = data_bag_item("sensu_checks", item)
 
   sensu_check check["id"] do
     type check["type"]
