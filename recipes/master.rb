@@ -32,16 +32,14 @@ sensu_handler "metrics" do
   handlers node["monitor"]["metric_handlers"]
 end
 
-unless Chef::Config[:solo]
-  search(:sensu_checks, '*:*') do |check|
-    sensu_check check["id"] do
-      type check["type"]
-      command check["command"]
-      subscribers check["subscribers"]
-      interval check["interval"]
-      handlers check["handlers"]
-      additional check["additional"]
-    end
+data_bag("sensu_checks").each do |check|
+  sensu_check check["id"] do
+    type check["type"]
+    command check["command"]
+    subscribers check["subscribers"]
+    interval check["interval"]
+    handlers check["handlers"]
+    additional check["additional"]
   end
 end
 

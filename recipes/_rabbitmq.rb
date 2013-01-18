@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: monitor
-# Recipe:: rabbitmq
+# Recipe:: _rabbitmq
 #
 # Copyright 2012, Sean Porter Consulting
 #

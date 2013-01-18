@@ -54,9 +54,14 @@ sensu_gem "sensu-plugin" do
   version node["monitor"]["sensu_plugin_version"]
 end
 
-cookbook_file "/etc/sensu/plugins/check-procs.rb" do
-  source "plugins/check-procs.rb"
-  mode 0755
+%w[
+  check-procs.rb
+  check-banner.rb
+].each do |default_plugin|
+  cookbook_file "/etc/sensu/plugins/#{default_plugin}" do
+    source "plugins/#{default_plugin}"
+    mode 0755
+  end
 end
 
 include_recipe "sensu::client_service"

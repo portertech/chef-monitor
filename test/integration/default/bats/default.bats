@@ -36,3 +36,6 @@
   [ "$(ps aux | grep sensu-client | grep -v grep)" ]
 }
 
+@test "should have ssh check definition" {
+  [ -x "/etc/sensu/checks/ssh.json" ]
+}
