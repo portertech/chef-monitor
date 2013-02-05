@@ -39,3 +39,7 @@
 @test "should have a ssh check definition" {
   [ -e "/etc/sensu/conf.d/checks/ssh.json" ]
 }
+
+@test "should have a graphite handler definition" {
+  [ -e "/etc/sensu/conf.d/handlers/graphite.json" ]
+}

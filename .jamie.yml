@@ -12,5 +12,6 @@ suites:
   - name: default
     run_list:
       - "recipe[monitor::master]"
+      - "recipe[monitor::graphite_handler]"
       - "recipe[monitor::redis]"
       - "recipe[monitor::rabbitmq]"
