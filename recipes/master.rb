@@ -22,6 +22,10 @@ include_recipe "sensu::redis"
 
 include_recipe "sensu::default"
 
+sensu_gem "sensu-plugin" do
+  version node["monitor"]["sensu_plugin_version"]
+end
+
 sensu_handler "default" do
   type "set"
   handlers node["monitor"]["default_handlers"]
