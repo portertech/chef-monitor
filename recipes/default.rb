@@ -19,24 +19,30 @@
 
 node.set.sensu.use_embedded_ruby = true
 ip_type = node["monitor"]["use_local_ipv4"] ? "local_ipv4" : "public_ipv4"
+master_address = node["monitor"]["master"]["address"]
 
-unless Chef::Config[:solo]
-  monitor_master = if node["monitor"]["environment_aware_search"]
+case
+when Chef::Config[:solo]
+  master_address ||= "localhost"
+when master_address.nil?
+  master_node = case
+  when node["monitor"]["environment_aware_search"]
     search(:node, "chef_environment:#{node.chef_environment} AND recipes:monitor\\:\\:master").first
   else
     search(:node, "recipes:monitor\\:\\:master").first
   end
 
-  unless monitor_master.nil?
-    address = if monitor_master.has_key?("cloud")
-      monitor_master["cloud"][ip_type] || monitor_master["ipaddress"]
-    else
-      monitor_master["ipaddress"]
-    end
-    node.set.sensu.rabbitmq.host = address
-    node.set.sensu.redis.host = address
+  master_address = case
+  when master_node.has_key?("cloud")
+    master_node["cloud"][ip_type] || master_node["ipaddress"]
+  else
+    master_node["ipaddress"]
   end
 end
+
+node.set.sensu.rabbitmq.host = master_address
+node.set.sensu.redis.host = master_address
+node.set.sensu.api.host = master_address
 
 include_recipe "sensu::default"
 
