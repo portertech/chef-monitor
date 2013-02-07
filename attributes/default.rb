@@ -1,4 +1,4 @@
-default["monitor"]["master"]["address"] = nil
+default["monitor"]["master_address"] = nil
 
 default["monitor"]["environment_aware_search"] = false
 default["monitor"]["use_local_ipv4"] = false
