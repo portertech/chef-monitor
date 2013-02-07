@@ -6,7 +6,7 @@
 # Connect to a TCP port, read one line, test it against a pattern.
 # Useful for SSH, ZooKeeper, etc.
 #
-# Copyright 2012 Sonian, Inc <chefs@sonian.net>
+# Copyright 2013 Sonian, Inc <chefs@sonian.net>
 #
 # Released under the same terms as Sensu (the MIT license); see LICENSE
 # for details.

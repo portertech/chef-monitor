@@ -27,7 +27,7 @@
 #    host.rabbitmq.message_stats.deliver_get.count 6661111 1344186404
 #    host.rabbitmq.message_stats.deliver_get.rate  24.6867565643405  1344186404#
 #
-# Copyright 2012 Joe Miller - https://github.com/joemiller
+# Copyright 2013 Joe Miller - https://github.com/joemiller
 #
 # Released under the same terms as Sensu (the MIT license); see LICENSE
 # for details.

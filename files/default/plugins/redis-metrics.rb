@@ -3,7 +3,7 @@
 # Produces Graphite formatted metrics from Redis INFO
 # ===
 #
-# Copyright 2012 Pete Shima <me@peteshima.com>
+# Copyright 2013 Pete Shima <me@peteshima.com>
 #                Brian Racer <bracer@gmail.com>
 #
 # Released under the same terms as Sensu (the MIT license); see LICENSE
