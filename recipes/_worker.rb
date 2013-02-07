@@ -33,9 +33,16 @@ sensu_handler "metrics" do
   handlers node["monitor"]["metric_handlers"]
 end
 
-data_bag("sensu_checks").each do |item|
-  check = data_bag_item("sensu_checks", item)
+check_definitions = case
+when Chef::Config[:solo]
+  data_bag("sensu_checks").map do |item|
+    data_bag_item("sensu_checks", item)
+  end
+else
+  search(:sensu_checks, "*:*")
+end
 
+check_definitions.each do |check|
   sensu_check check["id"] do
     type check["type"]
     command check["command"]
