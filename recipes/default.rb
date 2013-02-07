@@ -63,6 +63,11 @@ end
 %w[
   check-procs.rb
   check-banner.rb
+  check-http.rb
+  check-log.rb
+  check-mtime.rb
+  check-tail.rb
+  check-fs-writable.rb
 ].each do |default_plugin|
   cookbook_file "/etc/sensu/plugins/#{default_plugin}" do
     source "plugins/#{default_plugin}"
