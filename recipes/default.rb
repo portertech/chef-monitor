@@ -17,34 +17,13 @@
 # limitations under the License.
 #
 
-node.set.sensu.use_embedded_ruby = true
-ip_type = node["monitor"]["use_local_ipv4"] ? "local_ipv4" : "public_ipv4"
-master_address = node["monitor"]["master_address"]
-
-case
-when Chef::Config[:solo]
-  master_address ||= "localhost"
-when master_address.nil?
-  master_node = case
-  when node["monitor"]["environment_aware_search"]
-    search(:node, "chef_environment:#{node.chef_environment} AND recipes:monitor\\:\\:master").first
-  else
-    search(:node, "recipes:monitor\\:\\:master").first
-  end
-
-  master_address = case
-  when master_node.has_key?("cloud")
-    master_node["cloud"][ip_type] || master_node["ipaddress"]
-  else
-    master_node["ipaddress"]
-  end
-end
-
-node.set.sensu.rabbitmq.host = master_address
-node.set.sensu.redis.host = master_address
-node.set.sensu.api.host = master_address
+include_recipe "monitor::_master_search"
 
 include_recipe "sensu::default"
+
+ip_type = node["monitor"]["use_local_ipv4"] ? "local_ipv4" : "public_ipv4"
+
+client_attributes = node["monitor"]["additional_client_attributes"].to_hash
 
 sensu_client node.name do
   if node.has_key?("cloud")
@@ -53,7 +32,7 @@ sensu_client node.name do
     address node["ipaddress"]
   end
   subscriptions node["roles"] + ["all"]
-  additional node["monitor"]["additional_client_attributes"]
+  additional client_attributes
 end
 
 sensu_gem "sensu-plugin" do

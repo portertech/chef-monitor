@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+include_recipe "monitor::_master_search"
+
 include_recipe "sensu::default"
 
 sensu_gem "sensu-plugin" do
