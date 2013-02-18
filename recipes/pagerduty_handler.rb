@@ -25,7 +25,7 @@ cookbook_file "/etc/sensu/handlers/pagerduty.rb" do
 end
 
 sensu_snippet "pagerduty" do
-  content(:api_key => node["pagerduty"]["api_key"])
+  content(:api_key => node["monitor"]["pagerduty_api_key"])
 end
 
 sensu_handler "pagerduty" do
