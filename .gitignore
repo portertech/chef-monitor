@@ -1,8 +1,7 @@
+*.lock
 .cache
 .bundle
 .librarian
-.jamie
-Gemfile.lock
-Cheffile.lock
-cookbooks
-tmp
+.kitchen/
+.kitchen.local.yml
+tmp/
