@@ -27,7 +27,7 @@
 #    host.rabbitmq.message_stats.deliver_get.count 6661111 1344186404
 #    host.rabbitmq.message_stats.deliver_get.rate  24.6867565643405  1344186404#
 #
-# Copyright 2013 Joe Miller - https://github.com/joemiller
+# Copyright 2012 Joe Miller - https://github.com/joemiller
 #
 # Released under the same terms as Sensu (the MIT license); see LICENSE
 # for details.
@@ -86,27 +86,25 @@ class RabbitMQMetrics < Sensu::Plugin::Metric::CLI::Graphite
     rabbitmq = get_rabbitmq_info
     overview = rabbitmq.overview
 
-    # overview['queue_totals']['messages']
     output "#{config[:scheme]}.queue_totals.messages.count", overview['queue_totals']['messages'], timestamp
     output "#{config[:scheme]}.queue_totals.messages.rate", overview['queue_totals']['messages_details']['rate'], timestamp
 
-    # overview['queue_totals']['messages_unacknowledged']
     output "#{config[:scheme]}.queue_totals.messages_unacknowledged.count", overview['queue_totals']['messages_unacknowledged'], timestamp
     output "#{config[:scheme]}.queue_totals.messages_unacknowledged.rate", overview['queue_totals']['messages_unacknowledged_details']['rate'], timestamp
 
-    # overview['queue_totals']['messages_ready']
     output "#{config[:scheme]}.queue_totals.messages_ready.count", overview['queue_totals']['messages_ready'], timestamp
     output "#{config[:scheme]}.queue_totals.messages_ready.rate", overview['queue_totals']['messages_ready_details']['rate'], timestamp
 
-    # overview['message_stats']['publish']
-    output "#{config[:scheme]}.message_stats.publish.count", overview['message_stats']['publish'], timestamp
-    output "#{config[:scheme]}.message_stats.publish.rate", overview['message_stats']['publish_details']['rate'], timestamp
+    if overview['message_stats']['publish']
+      output "#{config[:scheme]}.message_stats.publish.count", overview['message_stats']['publish'], timestamp
+      output "#{config[:scheme]}.message_stats.publish.rate", overview['message_stats']['publish_details']['rate'], timestamp
+    end
 
-    # overview['message_stats']['deliver_no_ack']
-    output "#{config[:scheme]}.message_stats.deliver_no_ack.count", overview['message_stats']['deliver_no_ack'], timestamp
-    output "#{config[:scheme]}.message_stats.deliver_no_ack.rate", overview['message_stats']['deliver_no_ack_details']['rate'], timestamp
+    if overview['message_stats']['deliver_no_ack_details']
+      output "#{config[:scheme]}.message_stats.deliver_no_ack.count", overview['message_stats']['deliver_no_ack'], timestamp
+      output "#{config[:scheme]}.message_stats.deliver_no_ack.rate", overview['message_stats']['deliver_no_ack_details']['rate'], timestamp
+    end
 
-    # overview['message_stats']['deliver_get']
     output "#{config[:scheme]}.message_stats.deliver_get.count", overview['message_stats']['deliver_get'], timestamp
     output "#{config[:scheme]}.message_stats.deliver_get.rate", overview['message_stats']['deliver_get_details']['rate'], timestamp
 
