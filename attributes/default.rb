@@ -1,4 +1,8 @@
 override["sensu"]["use_embedded_ruby"] = true
+override["sensu"]["use_unstable_repo"] = true
+override["sensu"]["version"] = "0.9.12.beta.6-2"
+
+override["sensu"]["use_embedded_ruby"] = true
 
 default["monitor"]["master_address"] = nil
 
