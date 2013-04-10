@@ -1,6 +1,6 @@
 source :rubygems
 
-gem "test-kitchen", git: "git://github.com/opscode/test-kitchen.git", branch: "1.0"
+gem "test-kitchen", :git => "git://github.com/opscode/test-kitchen.git", :branch => "1.0"
 gem "librarian", ">= 0.0.26"
 
 group :lxc do

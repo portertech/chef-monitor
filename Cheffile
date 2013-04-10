@@ -9,8 +9,9 @@ cookbook "redis",
   :git => "https://github.com/miah/chef-redis.git"
 
 cookbook "sensu",
-  :git => "https://github.com/sensu/sensu-chef.git"
+  :git => "https://github.com/portertech/sensu-chef.git",
+  :ref => "0.9.12"
 
 cookbook "monitor",
-  :git => "https://github.com/portertech/chef-monitor.git",
-  :ref => "sandbox"
+  :path => "./"
+#  :git => "https://github.com/portertech/chef-monitor.git"
