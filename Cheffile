@@ -1,10 +1,9 @@
 site 'http://community.opscode.com/api/v1'
 
+cookbook "apt", "1.6.0"
 cookbook "logrotate"
 
-cookbook "rabbitmq",
-  :git => "https://github.com/portertech/rabbitmq.git",
-  :ref => "path"
+cookbook "rabbitmq", "2.0.0"
 
 cookbook "redis",
   :git => "https://github.com/miah/chef-redis.git"
@@ -13,4 +12,5 @@ cookbook "sensu",
   :git => "https://github.com/sensu/sensu-chef.git"
 
 cookbook "monitor",
-  :path => "./"
+  :git => "https://github.com/portertech/chef-monitor.git",
+  :ref => "sandbox"

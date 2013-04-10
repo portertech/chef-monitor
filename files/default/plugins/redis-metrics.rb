@@ -1,15 +1,15 @@
 #!/usr/bin/env ruby
 #
-# Produces Graphite formatted metrics from Redis INFO
+# Push Redis INFO stats into graphite
 # ===
 #
-# Copyright 2013 Pete Shima <me@peteshima.com>
+# Copyright 2012 Pete Shima <me@peteshima.com>
 #                Brian Racer <bracer@gmail.com>
 #
 # Released under the same terms as Sensu (the MIT license); see LICENSE
 # for details.
 
-require 'rubygems'
+require 'rubygems' if RUBY_VERSION < '1.9.0'
 require 'sensu-plugin/metric/cli'
 require 'redis'
 
@@ -25,7 +25,7 @@ class Redis2Graphite < Sensu::Plugin::Metric::CLI::Graphite
     :short => "-h HOST",
     :long => "--host HOST",
     :description => "Redis Host to connect to",
-    :default => "localhost"
+    :default  => '127.0.0.1'
 
   option :port,
     :short => "-p PORT",
