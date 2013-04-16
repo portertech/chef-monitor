@@ -25,6 +25,12 @@ sensu_gem "sensu-plugin" do
   version node["monitor"]["sensu_plugin_version"]
 end
 
+handlers = node["monitor"]["default_handlers"] + node["monitor"]["metric_handlers"]
+handlers.each do |handler_name|
+  next if handler_name == "debug"
+  include_recipe "monitor::_#{handler_name}_handler"
+end
+
 sensu_handler "default" do
   type "set"
   handlers node["monitor"]["default_handlers"]

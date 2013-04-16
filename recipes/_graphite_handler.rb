@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: monitor
-# Recipe:: graphite_handler
+# Recipe:: _graphite_handler
 #
 # Copyright 2013, Sean Porter Consulting
 #

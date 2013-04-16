@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: monitor
-# Recipe:: pagerduty_handler
+# Recipe:: _pagerduty_handler
 #
 # Copyright 2013, Sean Porter Consulting
 #

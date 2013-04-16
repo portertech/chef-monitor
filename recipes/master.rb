@@ -24,3 +24,5 @@ include_recipe "monitor::_worker"
 
 include_recipe "sensu::api_service"
 include_recipe "sensu::dashboard_service"
+
+include_recipe "monitor::default"

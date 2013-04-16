@@ -1,17 +1,30 @@
 site 'http://community.opscode.com/api/v1'
 
+###
+#
+# Default Suite
+#
+###
+
 cookbook "apt", "1.6.0"
-cookbook "logrotate"
 
 cookbook "rabbitmq", "2.0.0"
 
 cookbook "redis",
-  :git => "https://github.com/miah/chef-redis.git"
+  :git => "https://github.com/miah/chef-redis.git",
+  :ref => "2.1.0"
 
 cookbook "sensu",
-  :git => "https://github.com/portertech/sensu-chef.git",
-  :ref => "0.9.12"
+  :git => "https://github.com/sensu/sensu-chef.git"
 
 cookbook "monitor",
   :path => "./"
-#  :git => "https://github.com/portertech/chef-monitor.git"
+
+###
+#
+# Stack Suite
+#
+###
+
+cookbook "graphite",
+  :git => "https://github.com/hw-cookbooks/graphite.git"

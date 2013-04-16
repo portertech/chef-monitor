@@ -28,9 +28,15 @@ platforms:
 suites:
 - name: default
   run_list:
-  - "recipe[monitor::master]"
-  - "recipe[monitor::graphite_handler]"
-  - "recipe[monitor::pagerduty_handler]"
-  - "recipe[monitor::redis]"
-  - "recipe[monitor::rabbitmq]"
+  - recipe[monitor::master]
   attributes: {}
+- name: stack
+  run_list:
+  - recipe[graphite]
+  - recipe[monitor::master]
+  - recipe[monitor::redis]
+  - recipe[monitor::rabbitmq]
+  attributes:
+    monitor:
+      default_handlers: ["pagerduty"]
+      metric_handlers: ["graphite"]
