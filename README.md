@@ -19,7 +19,8 @@ The [Sensu cookbook](http://community.opscode.com/cookbooks/sensu).
 Attributes
 ==========
 
-`node["monitor"]["master_address"]` - Bypass the chef node search and explicitly set the address to reach the sensu master server.  Setting this will overrides any search functionality.
+`node["monitor"]["master_address"]` - Bypass the chef node search and
+explicitly set the address to reach the sensu master server.
 
 `node["monitor"]["environment_aware_search"]` - Defaults to false.
 If true, will limit search to the node's chef_environment.
