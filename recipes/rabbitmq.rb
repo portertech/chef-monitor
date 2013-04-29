@@ -20,6 +20,7 @@
 include_recipe "monitor::_rabbitmq"
 
 sensu_check "rabbitmq_overview_metrics" do
+  type "metric"
   command "rabbitmq-overview-metrics.rb"
   handlers ["metrics"]
   standalone true
