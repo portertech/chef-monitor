@@ -9,7 +9,7 @@ API, dashboard, & their dependencies (eg. RabbitMQ & Redis). The
 remaining recipes are intended to put monitoring checks in place in
 order to monitor specific services (eg. `recipe[monitor::redis]`).
 
-Learn more about Sensu [Here](https://github.com/sensu/sensu/wiki).
+Learn more about Sensu [Here](http://docs.sensuapp.org/).
 
 Requirements
 ============
@@ -20,7 +20,7 @@ Attributes
 ==========
 
 `node["monitor"]["master_address"]` - Bypass the chef node search and
-explicitly set the address to reach the sensu master server.
+explicitly set the address to reach the Sensu master server.
 
 `node["monitor"]["environment_aware_search"]` - Defaults to false.
 If true, will limit search to the node's chef_environment.
