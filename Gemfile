@@ -1,10 +1,10 @@
-source :rubygems
+source "https://rubygems.org"
 
-gem "test-kitchen", :git => "git://github.com/opscode/test-kitchen.git", :branch => "1.0"
+gem "test-kitchen", ">= 1.0.0.alpha.6"
 gem "librarian", ">= 0.0.26"
 
 group :lxc do
-  gem "kitchen-lxc", :git => "git://github.com/portertech/kitchen-lxc"
+  gem "kitchen-lxc", ">= 0.0.1.beta2"
 end
 
 group :vagrant do
