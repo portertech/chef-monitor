@@ -20,7 +20,7 @@ Attributes
 ==========
 
 `node["monitor"]["master_address"]` - Bypass the chef node search and
-explicitly set the address to reach the Sensu master server.
+explicitly set the address to reach the master server.
 
 `node["monitor"]["environment_aware_search"]` - Defaults to false.
 If true, will limit search to the node's chef_environment.
