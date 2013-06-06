@@ -29,8 +29,19 @@ suites:
 - name: default
   run_list:
   - recipe[monitor::master]
-  attributes: {}
-- name: stack
+- name: haproxy
+  run_list:
+    - recipe[haproxy]
+    - recipe[monitor::master]
+    - recipe[monitor::haproxy]
+  attributes:
+    sensu:
+      dashboard:
+        port: 4000
+    monitor:
+      additional_client_attributes:
+        haproxy_services: "servers-http"
+- name: graphite
   run_list:
   - recipe[graphite]
   - recipe[monitor::master]
