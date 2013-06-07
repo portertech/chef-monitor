@@ -43,7 +43,6 @@ suites:
     monitor:
       additional_client_attributes:
         haproxy_services: "servers-http"
-      sudo_commands: ["/etc/sensu/plugins/check-haproxy.rb"]
 - name: graphite
   run_list:
   - recipe[graphite]

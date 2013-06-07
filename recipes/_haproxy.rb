@@ -21,7 +21,12 @@ include_recipe "monitor::default"
 
 sensu_gem "haproxy"
 
-cookbook_file "/etc/sensu/plugins/check-haproxy.rb" do
+plugin_path = "/etc/sensu/plugins/check-haproxy.rb"
+
+cookbook_file plugin_path do
   source "plugins/check-haproxy.rb"
   mode 0755
 end
+
+sudo_commands = node["monitor"]["sudo_commands"] + [plugin_path]
+node.override["monitor"]["sudo_commands"] = sudo_commands.uniq
