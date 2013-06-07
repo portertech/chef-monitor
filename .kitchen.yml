@@ -38,9 +38,12 @@ suites:
     sensu:
       dashboard:
         port: 4000
+    haproxy:
+      enable_stats_socket: true
     monitor:
       additional_client_attributes:
         haproxy_services: "servers-http"
+      sudo_commands: ["/etc/sensu/plugins/check-haproxy.rb"]
 - name: graphite
   run_list:
   - recipe[graphite]

@@ -17,3 +17,4 @@ version          "0.0.2"
 end
 
 depends "sensu"
+depends "sudo"

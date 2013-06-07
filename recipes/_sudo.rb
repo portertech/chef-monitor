@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: monitor
-# Recipe:: haproxy
+# Recipe:: _sudo
 #
 # Copyright 2013, Sean Porter Consulting
 #
@@ -17,12 +17,10 @@
 # limitations under the License.
 #
 
-include_recipe "monitor::_haproxy"
-include_recipe "monitor::_sudo"
-
-sensu_check "check_haproxy" do
-  command "sudo check-haproxy.rb -s :::haproxy_services::: -w :::haproxy_warning|75::: -c :::haproxy_critical|50:::"
-  handlers ["default"]
-  standalone true
-  interval 30
+sudo "sensu" do
+  user "sensu"
+  runas "root"
+  commands node["monitor"]["sudo_commands"]
+  host "ALL"
+  nopasswd true
 end
