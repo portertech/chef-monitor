@@ -51,5 +51,4 @@ suites:
   - recipe[monitor::rabbitmq]
   attributes:
     monitor:
-      default_handlers: ["pagerduty"]
       metric_handlers: ["graphite"]
