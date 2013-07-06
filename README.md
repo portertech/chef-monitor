@@ -16,12 +16,6 @@ Requirements
 
 The [Sensu cookbook](http://community.opscode.com/cookbooks/sensu).
 
-You'll also need a data bag for sensu_checks, since the `monitor::_worker` recipe
-does a server search for the check defines. To get started:
-
-    knife data bag create sensu_checks
-    knife data bag from file sensu_checks test/integration/data_bags/sensu_checks/ssh.jso
-
 Attributes
 ==========
 
