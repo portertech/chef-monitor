@@ -46,8 +46,10 @@ when Chef::Config[:solo]
   data_bag("sensu_checks").map do |item|
     data_bag_item("sensu_checks", item)
   end
-else
+when Chef::DataBag.list.has_key?("sensu_checks")
   search(:sensu_checks, "*:*")
+else
+  Array.new
 end
 
 check_definitions.each do |check|
