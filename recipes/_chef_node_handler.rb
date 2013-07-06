@@ -17,21 +17,23 @@
 # limitations under the License.
 #
 
-node.override['monitor']['sudo_commands'] =
-  node['monitor']['sudo_commands'].push("/etc/sensu/handlers/chef_node.rb")
-
-include_recipe "monitor::_sudo"
-
 sensu_gem "spice" do
   version "1.0.6"
 end
 
 sensu_gem "rest-client"
 
-cookbook_file "/etc/sensu/handlers/chef_node.rb" do
+handler_path = "/etc/sensu/handlers/chef_node.rb"
+
+cookbook_file handler_path do
   source "handlers/chef_node.rb"
   mode 0755
 end
+
+node.override['monitor']['sudo_commands'] =
+  node['monitor']['sudo_commands'] + [handler_path]
+
+include_recipe "monitor::_sudo"
 
 sensu_snippet "chef" do
   content(

@@ -28,5 +28,7 @@ cookbook_file plugin_path do
   mode 0755
 end
 
-sudo_commands = node["monitor"]["sudo_commands"] + [plugin_path]
-node.override["monitor"]["sudo_commands"] = sudo_commands.uniq
+node.override["monitor"]["sudo_commands"] =
+  node["monitor"]["sudo_commands"] + [plugin_path]
+
+include_recipe "monitor::_sudo"
