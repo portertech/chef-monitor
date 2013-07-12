@@ -20,7 +20,7 @@
 include_recipe "monitor::_redis"
 
 sensu_check "redis_process" do
-  command "check-procs.rb -p redis-server -C 1"
+  command "check-procs.rb -p redis-server -w 2 -c 3 -C 1"
   handlers ["default"]
   standalone true
   interval 30
