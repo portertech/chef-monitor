@@ -1,54 +1,17 @@
 ---
-driver_plugin: vagrant
+driver_plugin: docker
+
 platforms:
-- name: ubuntu-12.04
+- name: ubuntu
   driver_config:
-    box: opscode-ubuntu-12.04
-    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-ubuntu-12.04.box
+    provision_command:
+      - "curl -L https://www.opscode.com/chef/install.sh | sudo bash"
+    require_chef_omnibus: false
   run_list:
   - recipe[apt]
-- name: ubuntu-10.04
-  driver_config:
-    box: opscode-ubuntu-10.04
-    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-ubuntu-10.04.box
-  run_list:
-  - recipe[apt]
-- name: centos-6.3
-  driver_config:
-    box: opscode-centos-6.3
-    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-centos-6.3.box
-  run_list:
-  - recipe[yum::epel]
-- name: centos-5.8
-  driver_config:
-    box: opscode-centos-5.8
-    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-centos-5.8.box
-  run_list:
-  - recipe[yum::epel]
+  - recipe[logrotate]
+
 suites:
 - name: default
   run_list:
   - recipe[monitor::master]
-- name: haproxy
-  run_list:
-    - recipe[haproxy]
-    - recipe[monitor::master]
-    - recipe[monitor::haproxy]
-  attributes:
-    sensu:
-      dashboard:
-        port: 4000
-    haproxy:
-      enable_stats_socket: true
-    monitor:
-      additional_client_attributes:
-        haproxy_services: "servers-http"
-- name: graphite
-  run_list:
-  - recipe[graphite]
-  - recipe[monitor::master]
-  - recipe[monitor::redis]
-  - recipe[monitor::rabbitmq]
-  attributes:
-    monitor:
-      metric_handlers: ["graphite"]
