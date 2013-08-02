@@ -15,3 +15,17 @@ suites:
 - name: default
   run_list:
   - recipe[monitor::master]
+- name: haproxy
+  run_list:
+    - recipe[haproxy]
+    - recipe[monitor::master]
+    - recipe[monitor::haproxy]
+  attributes:
+    sensu:
+      dashboard:
+        port: 4000
+    haproxy:
+      enable_stats_socket: true
+    monitor:
+      additional_client_attributes:
+        haproxy_services: "servers-http"
