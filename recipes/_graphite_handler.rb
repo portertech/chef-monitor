@@ -20,6 +20,8 @@
 graphite_address = node["monitor"]["graphite_address"]
 graphite_port = node["monitor"]["graphite_port"]
 
+ip_type = node["monitor"]["use_local_ipv4"] ? "local_ipv4" : "public_ipv4"
+
 case
 when Chef::Config[:solo]
   graphite_address ||= "localhost"
