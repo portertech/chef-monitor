@@ -5,3 +5,4 @@
 .kitchen/
 .kitchen.local.yml
 tmp/
+vendor/
