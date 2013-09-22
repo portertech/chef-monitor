@@ -9,7 +9,7 @@
 }
 
 @test "rabbitmq should be listening for connections" {
-  [ "$(netstat -plant | grep beam.smp)" ]
+  [ "$(netstat -plant | grep beam)" ]
 }
 
 @test "should have redis-server running" {

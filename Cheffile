@@ -6,20 +6,12 @@ site 'http://community.opscode.com/api/v1'
 #
 ###
 
-cookbook "apt", "1.6.0"
-
-cookbook "logrotate", "1.2.0"
-
-cookbook "sudo", "2.1.2"
-
-cookbook "rabbitmq", "2.0.0"
-
-cookbook "redis",
-  :git => "https://github.com/miah/chef-redis.git",
-  :ref => "2.1.0"
+cookbook "apt"
+cookbook "yum"
+cookbook "logrotate"
 
 cookbook "sensu",
-  :git => "https://github.com/sensu/sensu-chef.git"
+  :path => "../sensu-chef"
 
 cookbook "monitor",
   :path => "./"
@@ -30,9 +22,12 @@ cookbook "monitor",
 #
 ###
 
-cookbook "haproxy",
-  :git => "https://github.com/hw-cookbooks/haproxy.git",
-  :ref => "COOK-3133"
+cookbook "haproxy"
+
+cookbook "python",
+  :git => "https://github.com/hw-cookbooks/python.git",
+  :ref => "ohai"
 
 cookbook "graphite",
-  :git => "https://github.com/hw-cookbooks/graphite.git"
+  :git => "https://github.com/hw-cookbooks/graphite.git",
+  :ref => "python-version"

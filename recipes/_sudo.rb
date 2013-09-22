@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+include_recipe "sudo"
+
 sudo "sensu" do
   user "sensu"
   runas "root"

@@ -29,26 +29,29 @@ suites:
 - name: default
   run_list:
   - recipe[monitor::master]
-- name: haproxy
+- name: sandbox
   run_list:
     - recipe[haproxy]
+    - recipe[graphite]
     - recipe[monitor::master]
     - recipe[monitor::haproxy]
+    - recipe[monitor::redis]
+    - recipe[monitor::rabbitmq]
   attributes:
-    sensu:
-      dashboard:
-        port: 4000
+    authorization:
+      sudo:
+        users: ["kitchen"]
+        passwordless: true
+        include_sudoers_d: true
     haproxy:
       enable_stats_socket: true
-    monitor:
-      additional_client_attributes:
-        haproxy_services: "servers-http"
-- name: graphite
-  run_list:
-  - recipe[graphite]
-  - recipe[monitor::master]
-  - recipe[monitor::redis]
-  - recipe[monitor::rabbitmq]
-  attributes:
+    apache:
+      listen_ports: [4000]
+    graphite:
+      listen_port: 4000
+      carbon:
+        service_type: "init"
     monitor:
       metric_handlers: ["graphite"]
+      additional_client_attributes:
+        haproxy_services: "servers-http"
