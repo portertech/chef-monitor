@@ -3,6 +3,6 @@
 .bundle
 .librarian
 .kitchen/
-.kitchen.local.yml
+.kitchen.local.yml*
 tmp/
 vendor/

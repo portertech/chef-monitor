@@ -1,0 +1,8 @@
+{
+  "id": "fs_writable",
+  "command": "check-fs-writable.rb -d /tmp",
+  "subscribers": [
+    "all"
+  ],
+  "interval": 30
+}
