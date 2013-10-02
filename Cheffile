@@ -11,14 +11,14 @@ cookbook "yum"
 cookbook "logrotate"
 
 cookbook "sensu",
-  :path => "../sensu-chef"
+  :git => "https://github.com/sensu/sensu-chef.git"
 
 cookbook "monitor",
   :path => "./"
 
 ###
 #
-# Stack Suites
+# Stack Suite
 #
 ###
 
