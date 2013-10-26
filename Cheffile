@@ -22,7 +22,7 @@ cookbook "monitor",
 #
 ###
 
-cookbook "haproxy"
+cookbook "haproxy", "1.4.0"
 
 cookbook "python",
   :git => "https://github.com/hw-cookbooks/python.git",
