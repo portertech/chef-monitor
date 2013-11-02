@@ -1,0 +1,10 @@
+{
+  "id": "ntp",
+  "type": "metric",
+  "command": "/usr/lib/nagios/plugins/check_ntp -H time.nrc.ca",
+  "subscribers": [
+    "all"
+  ],
+  "interval": 60,
+  "handlers": ["graphite_perfdata"]
+}

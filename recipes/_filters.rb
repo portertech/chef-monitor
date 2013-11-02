@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: monitor
-# Recipe:: _pagerduty_handler
+# Recipe:: _filters
 #
 # Copyright 2013, Sean Porter Consulting
 #
@@ -17,21 +17,14 @@
 # limitations under the License.
 #
 
-sensu_gem "redphone"
-
-cookbook_file "/etc/sensu/handlers/pagerduty.rb" do
-  source "handlers/pagerduty.rb"
-  mode 0755
+sensu_filter "actions" do
+  attributes(:action => "eval: %w[create resolve].include? value")
 end
 
-sensu_snippet "pagerduty" do
-  content(:api_key => node["monitor"]["pagerduty_api_key"])
-end
-
-include_recipe "monitor::_filters"
-
-sensu_handler "pagerduty" do
-  type "pipe"
-  command "pagerduty.rb"
-  filters ["actions"]
+sensu_filter "keepalives" do
+  attributes(
+    :check => {
+      :name => "keepalive"
+    }
+  )
 end

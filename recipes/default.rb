@@ -39,6 +39,10 @@ sensu_gem "sensu-plugin" do
   version node["monitor"]["sensu_plugin_version"]
 end
 
+if node["monitor"]["use_nagios_plugins"]
+  include_recipe "monitor::_nagios_plugins"
+end
+
 %w[
   check-procs.rb
   check-banner.rb

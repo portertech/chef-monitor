@@ -53,12 +53,15 @@ sensu_handler "graphite" do
   mutator "only_check_output"
 end
 
-sensu_handler "graphite_amqp" do
-  type "amqp"
-  exchange(
-    :type => "topic",
-    :name => "graphite",
-    :durable => true
-  )
-  mutator "only_check_output"
+if node["monitor"]["use_nagios_plugins"]
+  include_recipe "monitor::_nagios_perfdata"
+
+  sensu_handler "graphite_perfdata" do
+    type "tcp"
+    socket(
+      :host => graphite_address,
+      :port => graphite_port
+    )
+    mutator "nagios_perfdata"
+  end
 end

@@ -44,13 +44,7 @@ sensu_snippet "chef" do
   )
 end
 
-sensu_filter "keepalives" do
-  attributes(
-    :check => {
-      :name => "keepalive"
-    }
-  )
-end
+include_recipe "monitor::_filters"
 
 sensu_handler "chef_node" do
   type "pipe"

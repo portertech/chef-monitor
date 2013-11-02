@@ -64,6 +64,7 @@ suites:
       dashboard:
         port: 4000
     monitor:
+      use_nagios_plugins: true
       metric_handlers: ["graphite"]
       additional_client_attributes:
         haproxy_services: "servers-http"
