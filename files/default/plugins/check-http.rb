@@ -31,27 +31,32 @@ class CheckHTTP < Sensu::Plugin::Check::CLI
     :description => 'A HOSTNAME to connect to'
     
   option :path,
-    :short => '-p PATH'
+    :short => '-p PATH',
+    :long => '--path PATH',
+    :description => 'Check a PATH'
     
   option :port, 
     :short => '-P PORT', 
     :long => '--port PORT',
     :proc => proc { |a| a.to_i },
+    :description => 'Select another port',
     :default => 80
     
   option :header, 
     :short => '-H HEADER', 
-    :long => '--header HEADER'
-    
+    :long => '--header HEADER',
+    :description => 'Check for a HEADER'
     
   option :ssl, 
     :short => '-s', 
     :boolean => true, 
+    :description => 'Enabling SSL connections',
     :default => false
     
   option :insecure, 
     :short => '-k', 
     :boolean => true, 
+    :description => 'Enabling insecure connections',
     :default => false
     
   option :user, 
@@ -65,11 +70,15 @@ class CheckHTTP < Sensu::Plugin::Check::CLI
     :description => 'A password to use for the username'
     
   option :cert, 
-    :short => '-c FILE'
-    
+    :short => '-c FILE',
+    :long => '--cert FILE',
+    :description => 'Cert to use'
+
   option :cacert, 
     :short => '-C FILE'
-    
+    :long => '--cacert FILE',
+    :description => 'A CA Cert to use'
+
   option :pattern, 
     :short => '-q PAT',
     :long => '--query PAT',
@@ -78,15 +87,19 @@ class CheckHTTP < Sensu::Plugin::Check::CLI
   option :timeout, 
     :short => '-t SECS', 
     :proc => proc { |a| a.to_i }, 
+    :description => 'Set the timeout'
     :default => 15
     
   option :redirectok, 
     :short => '-r', 
-    :boolean => true, 
+    :boolean => true,
+    :description => 'Check if a redirect is ok'
     :default => false
     
   option :redirectto, 
     :short => '-R URL'
+    :long => '--redirect-to URL'
+    :description => 'Redirect to another page'
 
   def run
     if config[:url]
