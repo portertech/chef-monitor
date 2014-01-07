@@ -20,21 +20,73 @@ require 'net/https'
 
 class CheckHTTP < Sensu::Plugin::Check::CLI
 
-  option :url, :short => '-u URL'
-  option :host, :short => '-h HOST'
-  option :path, :short => '-p PATH'
-  option :port, :short => '-P PORT', :proc => proc { |a| a.to_i }
-  option :header, :short => '-H HEADER', :long => '--header HEADER'
-  option :ssl, :short => '-s', :boolean => true, :default => false
-  option :insecure, :short => '-k', :boolean => true, :default => false
-  option :user, :short => '-U', :long => '--username USER'
-  option :password, :short => '-a', :long => '--password PASS'
-  option :cert, :short => '-c FILE'
-  option :cacert, :short => '-C FILE'
-  option :pattern, :short => '-q PAT'
-  option :timeout, :short => '-t SECS', :proc => proc { |a| a.to_i }, :default => 15
-  option :redirectok, :short => '-r', :boolean => true, :default => false
-  option :redirectto, :short => '-R URL'
+  option :url, 
+    :short => '-u URL',
+    :long => '--url URL',
+    :description => 'A URL to connect to'
+    
+  option :host, 
+    :short => '-h HOST',
+    :long => '--hostname HOSTNAME',
+    :description => 'A HOSTNAME to connect to'
+    
+  option :path,
+    :short => '-p PATH'
+    
+  option :port, 
+    :short => '-P PORT', 
+    :long => '--port PORT',
+    :proc => proc { |a| a.to_i },
+    :default => 80
+    
+  option :header, 
+    :short => '-H HEADER', 
+    :long => '--header HEADER'
+    
+    
+  option :ssl, 
+    :short => '-s', 
+    :boolean => true, 
+    :default => false
+    
+  option :insecure, 
+    :short => '-k', 
+    :boolean => true, 
+    :default => false
+    
+  option :user, 
+    :short => '-U', 
+    :long => '--username USER',
+    :description => 'A username to connect as'
+    
+  option :password, 
+    :short => '-a', 
+    :long => '--password PASS',
+    :description => 'A password to use for the username'
+    
+  option :cert, 
+    :short => '-c FILE'
+    
+  option :cacert, 
+    :short => '-C FILE'
+    
+  option :pattern, 
+    :short => '-q PAT',
+    :long => '--query PAT',
+    :description => 'Query for a specific pattern'
+    
+  option :timeout, 
+    :short => '-t SECS', 
+    :proc => proc { |a| a.to_i }, 
+    :default => 15
+    
+  option :redirectok, 
+    :short => '-r', 
+    :boolean => true, 
+    :default => false
+    
+  option :redirectto, 
+    :short => '-R URL'
 
   def run
     if config[:url]
