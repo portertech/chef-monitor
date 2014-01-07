@@ -86,6 +86,7 @@ class CheckHTTP < Sensu::Plugin::Check::CLI
     
   option :timeout, 
     :short => '-t SECS', 
+    :long => '--timeout SECS',
     :proc => proc { |a| a.to_i }, 
     :description => 'Set the timeout',
     :default => 15
