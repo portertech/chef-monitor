@@ -75,7 +75,7 @@ class CheckHTTP < Sensu::Plugin::Check::CLI
     :description => 'Cert to use'
 
   option :cacert, 
-    :short => '-C FILE'
+    :short => '-C FILE',
     :long => '--cacert FILE',
     :description => 'A CA Cert to use'
 
@@ -87,18 +87,18 @@ class CheckHTTP < Sensu::Plugin::Check::CLI
   option :timeout, 
     :short => '-t SECS', 
     :proc => proc { |a| a.to_i }, 
-    :description => 'Set the timeout'
+    :description => 'Set the timeout',
     :default => 15
     
   option :redirectok, 
     :short => '-r', 
     :boolean => true,
-    :description => 'Check if a redirect is ok'
+    :description => 'Check if a redirect is ok',
     :default => false
     
   option :redirectto, 
-    :short => '-R URL'
-    :long => '--redirect-to URL'
+    :short => '-R URL',
+    :long => '--redirect-to URL',
     :description => 'Redirect to another page'
 
   def run
