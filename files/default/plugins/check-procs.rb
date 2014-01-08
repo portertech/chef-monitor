@@ -38,21 +38,67 @@ class CheckProcs < Sensu::Plugin::Check::CLI
     end
   end
 
-  option :warn_over, :short => '-w N', :proc => proc {|a| a.to_i }, :default => 1
-  option :crit_over, :short => '-c N', :proc => proc {|a| a.to_i }, :default => 1
-  option :warn_under, :short => '-W N', :proc => proc {|a| a.to_i }, :default => 0
-  option :crit_under, :short => '-C N', :proc => proc {|a| a.to_i }, :default => 0
-  option :metric, :short => '-t METRIC', :proc => proc {|a| a.to_sym }
+  option :warn_over, 
+    :short => '-w N', 
+    :proc => proc {|a| a.to_i }, 
+    :default => 1
+    
+  option :crit_over, 
+    :short => '-c N', 
+    :proc => proc {|a| a.to_i }, 
+    :default => 1
+    
+  option :warn_under, 
+    :short => '-W N', 
+    :proc => proc {|a| a.to_i }, 
+    :default => 0
+    
+  option :crit_under, 
+    :short => '-C N', 
+    :proc => proc {|a| a.to_i }, 
+    :default => 0
+    
+  option :metric, 
+    :short => '-t METRIC', 
+    :proc => proc {|a| a.to_sym }
 
-  option :match_self, :short => '-m', :boolean => true, :default => false
-  option :match_parent, :short => '-M', :boolean => true, :default => false
-  option :cmd_pat, :short => '-p PATTERN'
-  option :file_pid, :short => '-f PATH', :proc => proc {|a| read_pid(a) }
-  option :vsz, :short => '-z VSZ', :proc => proc {|a| a.to_i }
-  option :rss, :short => '-r RSS', :proc => proc {|a| a.to_i }
-  option :pcpu, :short => '-P PCPU', :proc => proc {|a| a.to_f }
-  option :state, :short => '-s STATE', :proc => proc {|a| a.split(',') }
-  option :user, :short => '-u USER', :proc => proc {|a| a.split(',') }
+  option :match_self, 
+    :short => '-m', 
+    :boolean => true, 
+    :default => false
+    
+  option :match_parent, 
+    :short => '-M', 
+    :boolean => true, 
+    :default => false
+    
+  option :cmd_pat, 
+    :short => '-p PATTERN'
+    
+  option :file_pid, 
+    :short => '-f PATH', 
+    :proc => proc {|a| read_pid(a) }
+    
+  option :vsz, 
+    :short => '-z VSZ', 
+    :proc => proc {|a| a.to_i }
+    
+  option :rss, 
+    :short => '-r RSS', 
+    :proc => proc {|a| a.to_i }
+    
+  option :pcpu, 
+    :short => '-P PCPU', 
+    :proc => proc {|a| a.to_f }
+    
+  option :state, 
+    :short => '-s STATE', 
+    :proc => proc {|a| a.split(',') }
+    
+  option :user, 
+    :short => '-u USER', 
+    :proc => proc {|a| a.split(',') }
+    
 
   def read_lines(cmd)
     IO.popen(cmd + ' 2>&1') do |child|
