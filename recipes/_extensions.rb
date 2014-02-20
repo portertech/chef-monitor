@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: monitor
-# Recipe:: _nagios_perfdata
+# Recipe:: _extensions
 #
 # Copyright 2013, Sean Porter Consulting
 #
@@ -17,10 +17,31 @@
 # limitations under the License.
 #
 
-include_recipe "monitor::_extensions"
+%w[
+  client
+  server
+].each do |service|
+  extension_dir = node["monitor"]["#{service}_extension_dir"]
 
-cookbook_file File.join(node["monitor"]["server_extension_dir"], "nagios_perfdata.rb") do
-  source "extensions/nagios_perfdata.rb"
-  mode 0755
-  notifies :create, "ruby_block[sensu_service_trigger]", :immediately
+  directory extension_dir do
+    recursive true
+    owner "root"
+    group "sensu"
+    mode 0750
+  end
+
+  config_path = case node.platform_family
+  when "rhel", "fedora"
+    "/etc/sysconfig/sensu-#{service}"
+  else
+    "/etc/default/sensu-#{service}"
+  end
+
+  file config_path do
+    owner "root"
+    group "root"
+    mode 0744
+    content "EXTENSION_DIR=#{extension_dir}"
+    notifies :create, "ruby_block[sensu_service_trigger]", :immediately
+  end
 end

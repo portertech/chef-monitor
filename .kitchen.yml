@@ -8,37 +8,28 @@ platforms:
   driver_config:
     box: opscode-ubuntu-13.04
     box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-13.04_provisionerless.box
-- name: ubuntu-12.04
-  driver_config:
-    box: opscode-ubuntu-12.04
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box
-- name: ubuntu-10.04
-  driver_config:
-    box: opscode-ubuntu-10.04
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-10.04_provisionerless.box
+    customize:
+      memory: 1024
+    network:
+      - ["forwarded_port", {guest: 80, host: 8080}]
+      - ["forwarded_port", {guest: 8080, host: 8081}]
+  run_list:
+  - recipe[apt]
+
 - name: centos-6.4
   driver_config:
     box: opscode-centos-6.4
     box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
-- name: centos-5.9
-  driver_config:
-    box: opscode-centos-5.9
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_centos-5.9_provisionerless.box
-- name: sandbox
-  driver_config:
-    box: opscode-ubuntu-13.04
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-13.04_provisionerless.box
     customize:
       memory: 1024
     network:
-      - ["forwarded_port", {guest: 4000, host: 8080}]
+      - ["forwarded_port", {guest: 80, host: 8080}]
       - ["forwarded_port", {guest: 8080, host: 8081}]
+  run_list:
+  - recipe[yum]
 
 suites:
 - name: default
-  run_list:
-  - recipe[monitor::master]
-- name: stack
   run_list:
     - recipe[haproxy]
     - recipe[graphite]
@@ -65,6 +56,7 @@ suites:
         port: 4000
     monitor:
       use_nagios_plugins: true
+      use_statsd_input: true
       metric_handlers: ["graphite"]
       additional_client_attributes:
         haproxy_services: "servers-http"

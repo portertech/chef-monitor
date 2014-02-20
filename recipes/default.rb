@@ -54,4 +54,8 @@ end
   end
 end
 
+if node["monitor"]["use_statsd_input"]
+  include_recipe "monitor::_statsd"
+end
+
 include_recipe "sensu::client_service"

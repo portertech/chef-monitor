@@ -1,11 +1,5 @@
 site 'http://community.opscode.com/api/v1'
 
-###
-#
-# Default Suite
-#
-###
-
 cookbook "apt"
 cookbook "yum"
 cookbook "logrotate"
@@ -16,12 +10,6 @@ cookbook "sensu",
 cookbook "monitor",
   :path => "./"
 
-###
-#
-# Stack Suite
-#
-###
-
 cookbook "haproxy", "1.4.0"
 
 cookbook "python",
@@ -30,4 +18,4 @@ cookbook "python",
 
 cookbook "graphite",
   :git => "https://github.com/hw-cookbooks/graphite.git",
-  :ref => "python-version"
+  :ref => "v0.4.6"
