@@ -35,10 +35,6 @@ sensu_client node.name do
   additional client_attributes
 end
 
-sensu_gem "sensu-plugin" do
-  version node["monitor"]["sensu_plugin_version"]
-end
-
 if node["monitor"]["use_nagios_plugins"]
   include_recipe "monitor::_nagios_plugins"
 end
