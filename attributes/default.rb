@@ -9,6 +9,7 @@ default["monitor"]["use_local_ipv4"] = false
 default["monitor"]["additional_client_attributes"] = Mash.new
 
 default["monitor"]["use_nagios_plugins"] = false
+default["monitor"]["use_system_profile"] = false
 default["monitor"]["use_statsd_input"] = false
 
 default["monitor"]["sudo_commands"] = Array.new

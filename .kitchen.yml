@@ -56,6 +56,7 @@ suites:
         port: 4000
     monitor:
       use_nagios_plugins: true
+      use_system_profile: true
       use_statsd_input: true
       metric_handlers: ["graphite"]
       additional_client_attributes:

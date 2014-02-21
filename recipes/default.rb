@@ -35,10 +35,6 @@ sensu_client node.name do
   additional client_attributes
 end
 
-if node["monitor"]["use_nagios_plugins"]
-  include_recipe "monitor::_nagios_plugins"
-end
-
 %w[
   check-procs.rb
   check-banner.rb
@@ -52,6 +48,14 @@ end
     source "plugins/#{default_plugin}"
     mode 0755
   end
+end
+
+if node["monitor"]["use_nagios_plugins"]
+  include_recipe "monitor::_nagios_plugins"
+end
+
+if node["monitor"]["use_system_profile"]
+  include_recipe "monitor::_system_profile"
 end
 
 if node["monitor"]["use_statsd_input"]
