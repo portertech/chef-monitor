@@ -14,7 +14,7 @@ Learn more about Sensu [Here](http://docs.sensuapp.org/).
 Requirements
 ============
 
-The [Sensu cookbook](http://community.opscode.com/cookbooks/sensu).
+The [Sensu](http://community.opscode.com/cookbooks/sensu) and [sudo](http://community.opscode.com/cookbooks/sudo) cookbooks.
 
 Attributes
 ==========
