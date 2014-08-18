@@ -23,5 +23,6 @@ include_recipe "sensu::redis"
 include_recipe "monitor::_worker"
 
 include_recipe "sensu::api_service"
+include_recipe "uchiwa"
 
 include_recipe "monitor::default"

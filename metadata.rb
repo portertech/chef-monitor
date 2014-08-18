@@ -18,3 +18,4 @@ end
 
 depends "sensu"
 depends "sudo"
+depends "uchiwa"
