@@ -121,9 +121,9 @@ class CheckHTTP < Sensu::Plugin::Check::CLI
         get_resource
       end
     rescue Timeout::Error
-      critical "Connection timed out"
+      critical "Request timed out"
     rescue => e
-      critical "Connection error: #{e.message}"
+      critical "Request error: #{e.message}"
     end
   end
 
@@ -158,7 +158,7 @@ class CheckHTTP < Sensu::Plugin::Check::CLI
     case res.code
       when /^2/
         if config[:redirectto]
-          critical "expected redirect to #{config[:redirectto]} but got #{res.code}"
+          critical "Expected redirect to #{config[:redirectto]} but got #{res.code}"
         elsif config[:pattern]
           if res.body =~ /#{config[:pattern]}/
             ok "#{res.code}, found /#{config[:pattern]}/ in #{res.body.size} bytes"
@@ -176,7 +176,7 @@ class CheckHTTP < Sensu::Plugin::Check::CLI
             if config[:redirectto] == res['Location']
               ok "#{res.code} found redirect to #{res['Location']}"
             else
-              critical "expected redirect to #{config[:redirectto]} instead redirected to #{res['Location']}"
+              critical "Expected redirect to #{config[:redirectto]} instead redirected to #{res['Location']}"
             end
           end
         else
