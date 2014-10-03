@@ -22,6 +22,7 @@ monitoring cookbook, fork it :-)
 Cookbooks:
 
 - [Sensu](http://community.opscode.com/cookbooks/sensu)
+- [Uchiwa](http://community.opscode.com/cookbooks/uchiwa)
 - [sudo](http://community.opscode.com/cookbooks/sudo)
 
 ## Attributes
