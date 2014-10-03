@@ -1,23 +1,30 @@
-Description
-===========
+## Description
 
 Monitor is a cookbook for monitoring services, using Sensu, a
 monitoring framework. The default recipe installs & configures the
 Sensu client (monitoring agent), as well as common service check
 dependencies. The master recipe installs & configures the Sensu server,
-API, dashboard, & their dependencies (eg. RabbitMQ & Redis). The
-remaining recipes are intended to put monitoring checks in place in
-order to monitor specific services (eg. `recipe[monitor::redis]`).
+API, Uchiwa (dashboard), & their dependencies (eg. RabbitMQ & Redis).
+The remaining recipes are intended to put monitoring checks in place
+in order to monitor specific services (eg. `recipe[monitor::redis]`).
 
-Learn more about Sensu [Here](http://docs.sensuapp.org/).
+Learn more about Sensu [Here](http://sensuapp.org/docs).
 
-Requirements
-============
+### THIS COOKBOOK SERVES AS AN EXAMPLE!!!
 
-The [Sensu](http://community.opscode.com/cookbooks/sensu) and [sudo](http://community.opscode.com/cookbooks/sudo) cookbooks.
+There are many ways to deploy/use Sensu and its dependencies, this
+"wrapper" cookbook is opinionated, you may not agree with its approach
+and choices. If this cookbook can serve as the base for your
+monitoring cookbook, fork it :-)
 
-Attributes
-==========
+## Requirements
+
+Cookbooks:
+
+- [Sensu](http://community.opscode.com/cookbooks/sensu)
+- [sudo](http://community.opscode.com/cookbooks/sudo)
+
+## Attributes
 
 `node["monitor"]["master_address"]` - Bypass the chef node search and
 explicitly set the address to reach the master server.
@@ -38,8 +45,7 @@ attributes to be passed to the sensu_client LWRP.
 
 `node["monitor"]["metric_handlers"]` - Metric event handlers.
 
-Usage
-=====
+## Usage
 
 Example: To monitor the Redis service running on a Chef node, include
 "recipe[monitor::redis]" in its run list.
